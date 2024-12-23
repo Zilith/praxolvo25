@@ -4,11 +4,12 @@
     "description": "API base para prueba técnica de backend",
     "main": "app.js",
     "scripts": {
-      "start": "node ap/app.js",
-      "dev": "nodemon ap/app.js"
+        "start": "node ap/app.js",
+        "dev": "nodemon ap/app.js"
     },
     "dependencies": {
-      "express": "^4.17.1",
-      "nodemon": "^2.0.7"
+        "express": "^4.17.1",
+        "node-localstorage": "^3.0.5",
+        "nodemon": "^2.0.7"
     }
-  }  
+}

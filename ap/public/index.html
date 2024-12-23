@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%; 
+            box-sizing: border-box;
+        }
+
+        label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0 25px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-size: 1.1em; 
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 18px 30px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.2em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+
+        #productList {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        #productList th, #productList td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #productList th {
+            background-color: #f2f2f2;
+        }
+
+        #productList tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .delete-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: red;
+            font-size: 1.5em;
+        }
+
+        .delete-btn:hover {
+            color: #b50000;
+        }
+
+        .edit-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: #4CAF50;
+            font-size: 1.5em;
+        }
+
+        .edit-btn:hover {
+            color: #388E3C;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestión de Productos</h1>
+
+        <h2>Agregar Producto</h2>
+        <form id="productForm">
+            <label for="productName">Nombre:</label>
+            <input type="text" id="productName" required><br>
+            
+            <label for="productDescr">Descripción:</label>
+            <input type="text" id="productDescr" required><br>
+            
+            <label for="productPrice">Precio:</label>
+            <input type="number" id="productPrice" required><br>
+
+            <button type="submit">Agregar Producto</button>
+        </form>
+
+        <h2>Lista de Productos</h2>
+        <table id="productList">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
