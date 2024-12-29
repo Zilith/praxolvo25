@@ -1,12 +1,16 @@
 const express = require('express');
+const productsRoutes = require('./routes/products');
+const errorHandler = require('./middlewares/errorHandler');
+
+
 const app = express();
-const productsRoutes = require('./routes/products.js');
 const port = 3000;
 
 app.use(express.json());
 
-// Rutas para productos
 app.use('/products', productsRoutes);
+
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
