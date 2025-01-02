@@ -3,22 +3,50 @@ const router = express.Router();
 let products = [];
 
 // GET /products - Get all products
-router.get('/', (req, res) => {
-    res.status(200).json(products);
+router.get('/', async (req, res) => {
+    try {
+        res.status(200).json(products);
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 });
 
 // POST /products - Create product
-router.post('/', (req, res) => {
-    const { name, descr, price } = req.body;
-    const newProduct = {
-        id: products.length + 1,
-        name,
-        descr,
-        price,
-        creationDate: new Date()
-    };
-    products.push(newProduct);
-    res.status(201).json(newProduct);
+router.post('/', async (req, res) => {
+    try {
+        const { name, descr, price } = req.body;
+
+        // Validate that all fields are provided
+        if (!name || !descr || !price) {
+            return res.status(400).json({ message: 'All fields (name, descr, price) are required.' });
+        }
+
+        // Validate that price is a number
+        if (isNaN(price)) {
+            return res.status(400).json({ message: 'Price must be a valid number.' });
+        }
+
+        // Validate that price is not negative
+        if (price < 0) {
+            return res.status(400).json({ message: 'Price must be a positive number.' });
+        }
+
+        // Create the new product
+        const newProduct = {
+            id: products.length + 1,
+            name,
+            descr,
+            price,
+            creationDate: new Date()
+        };
+
+        products.push(newProduct);
+        res.status(201).json(newProduct);
+    } catch (error) {
+        console.error('Error creating product:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 });
 
 // GET /products/:id - Get product by id
