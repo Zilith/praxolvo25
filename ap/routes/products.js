@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const uuid = require('uuid');
+const Product = require('../models/product');
+
 let products = [];
 
 // GET /products - Get all products
@@ -11,15 +12,18 @@ router.get('/', (req, res) => {
 // POST /products - Create product
 router.post('/', (req, res) => {
     const { name, descr, price } = req.body;
-    const newProduct = {
-        id: uuid.v4(),
-        name,
-        descr,
-        price,
-        creationDate: new Date(),
-    };
-    products.push(newProduct);
-    res.status(201).json(newProduct);
+    console.log(name);
+    try {
+        const newProduct = new Product({
+            name,
+            descr,
+            price,
+        });
+        products.push(newProduct);
+        res.status(201).json(newProduct);
+    } catch (err) {
+        res.status(400).send({ error: err.message });
+    }
 });
 
 /**
