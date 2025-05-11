@@ -8,7 +8,7 @@ class Product {
         if (!descr || typeof descr !== 'string') {
             throw new Error('Invalid or missing description');
         }
-        if (!price || typeof price !== 'number') {
+        if (!price || typeof price !== 'number' || price < 0) {
             throw new Error('Invalid or missing price');
         }
 
@@ -21,6 +21,11 @@ class Product {
 
     // update function for PUT method
     update(fields) {
+        if (!fields.name && !fields.descr && !fields.price) {
+            throw new Error(
+                'At least one field (name, descr, or price) must be provided for update'
+            );
+        }
         if (fields.name !== undefined) {
             if (typeof fields.name !== 'string')
                 throw new Error('Invalid name');
@@ -34,7 +39,7 @@ class Product {
         }
 
         if (fields.price !== undefined) {
-            if (typeof fields.price !== 'number')
+            if (typeof fields.price !== 'number' || fields.price < 0)
                 throw new Error('Invalid price');
             this.price = fields.price;
         }
