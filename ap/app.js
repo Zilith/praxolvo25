@@ -11,6 +11,8 @@ app.use('/products', productsRoutes);
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
 });
+
+module.exports = server;
