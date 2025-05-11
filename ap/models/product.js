@@ -1,6 +1,6 @@
+const uuid = require('uuid');
 class Product {
-    constructor(id, name, descr, price, creationDate) {
-        this.id = id;
+    constructor({ name, descr, price }) {
         // data validation for missing or typeof
         if (!name || typeof name !== 'string') {
             throw new Error('Invalid or missing name');
@@ -12,10 +12,13 @@ class Product {
             throw new Error('Invalid or missing price');
         }
 
+        this.id = uuid.v4();
         this.name = name;
         this.descr = descr;
         this.price = price;
-        this.creationDate = creationDate;
+        this.creationDate = new Date();
+    }
+
     }
 }
 
