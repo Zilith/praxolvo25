@@ -39,6 +39,19 @@ router.get('/:id', (req, res) => {
     }
 });
 
+router.put('/:id', (req, res) => {
+    const product = products.find((p) => p.id === req.params.id);
+
+    if (!product) {
+        return res.status(404).json({ error: 'Product not found ' });
+    }
+    try {
+        product.update(req.body);
+        res.json(product);
+    } catch (err) {
+        res.status(400).send({ error: err.message });
+    }
+});
 
 router.delete('/:id', (req, res) => {
     products = products.filter((p) => p.id !== req.params.id);
