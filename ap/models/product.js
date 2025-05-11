@@ -19,6 +19,25 @@ class Product {
         this.creationDate = new Date();
     }
 
+    // update function for PUT method
+    update(fields) {
+        if (fields.name !== undefined) {
+            if (typeof fields.name !== 'string')
+                throw new Error('Invalid name');
+            this.name = fields.name;
+        }
+
+        if (fields.descr !== undefined) {
+            if (typeof fields.descr !== 'string')
+                throw new Error('Invalid description');
+            this.descr = fields.descr;
+        }
+
+        if (fields.price !== undefined) {
+            if (typeof fields.price !== 'number')
+                throw new Error('Invalid price');
+            this.price = fields.price;
+        }
     }
 }
 
