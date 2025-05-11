@@ -2,7 +2,23 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/product');
 
-let products = [];
+let products = [
+    new Product({
+        name: 'Laptop',
+        descr: 'A high-performance laptop for professionals',
+        price: 1200,
+    }),
+    new Product({
+        name: 'Smartphone',
+        descr: 'A latest-generation smartphone with excellent camera quality',
+        price: 800,
+    }),
+    new Product({
+        name: 'Headphones',
+        descr: 'Noise-cancelling over-ear headphones',
+        price: 200,
+    }),
+];
 
 // GET /products - Get all products
 router.get('/', (req, res) => {
@@ -12,7 +28,6 @@ router.get('/', (req, res) => {
 // POST /products - Create product
 router.post('/', (req, res) => {
     const { name, descr, price } = req.body;
-    console.log(name);
     try {
         const newProduct = new Product({
             name,
