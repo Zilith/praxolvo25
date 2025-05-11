@@ -54,8 +54,12 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
+    const initialLength = products.length;
     products = products.filter((p) => p.id !== req.params.id);
 
+    if (products.length === initialLength) {
+        return res.status(404).send({ error: 'Product not found' });
+    }
     res.status(204).end();
 });
 
